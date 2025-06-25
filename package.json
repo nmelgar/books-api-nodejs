@@ -4,7 +4,7 @@
   "description": "A comprehensive **RESTful API for managing a collection of books**, including authors, genres, and user reviews. Built with **Node.js, TypeScript**, and **MongoDB**, this backend project supports secure authentication, robust data validation, and provides a solid foundation for any library or book catalog application.",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node src/index.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +22,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
