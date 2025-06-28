@@ -1,4 +1,5 @@
 import express from "express";
+import swaggerDocs from "./utils/swagger";
 import booksRoutes from "./routes/routes";
 
 const app = express();
@@ -12,4 +13,5 @@ app.use("/", booksRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  swaggerDocs(app, PORT);
 });

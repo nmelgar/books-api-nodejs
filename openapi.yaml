@@ -1,0 +1,605 @@
+openapi: 3.0.0
+info:
+  title: Transaction API
+  version: 1.0.0
+  description: API for managing books, authors, genres, and reviews.
+  contact:
+    name: API Support
+    email: support@example.com
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: http://localhost:3000
+    description: Local development server
+  - url: http://localhost:3001
+    description: Local development server
+
+tags:
+  - name: Books
+    description: Operations about books
+  - name: Authors
+    description: Operations about authors
+  - name: Genres
+    description: Operations about genres
+  - name: Reviews
+    description: Operations about reviews
+
+paths:
+  /books:
+    post:
+      summary: Create a new book
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookInput"
+      responses:
+        "201":
+          description: Book created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal server error
+    get:
+      summary: Get all books
+      tags:
+        - Books
+      responses:
+        "200":
+          description: A list of all books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+        "500":
+          description: Internal server error
+
+  /books/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParam"
+    get:
+      summary: Get a single book by ID
+      tags:
+        - Books
+      responses:
+        "200":
+          description: A single book object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+        "404":
+          description: Book not found
+        "500":
+          description: Internal server error
+    put:
+      summary: Update an existing book
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookInput"
+      responses:
+        "200":
+          description: Book updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+        "400":
+          description: Invalid input
+        "404":
+          description: Book not found
+        "500":
+          description: Internal server error
+    delete:
+      summary: Delete a book
+      tags:
+        - Books
+      responses:
+        "204":
+          description: Book deleted successfully
+        "404":
+          description: Book not found
+        "500":
+          description: Internal server error
+
+  /authors:
+    post:
+      summary: Create a new author
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorInput"
+      responses:
+        "201":
+          description: Author created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal server error
+    get:
+      summary: Get all authors
+      tags:
+        - Authors
+      responses:
+        "200":
+          description: A list of all authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Author"
+        "500":
+          description: Internal server error
+
+  /authors/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParam"
+    get:
+      summary: Get a single author by ID
+      tags:
+        - Authors
+      responses:
+        "200":
+          description: A single author object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+        "404":
+          description: Author not found
+        "500":
+          description: Internal server error
+    put:
+      summary: Update an existing author
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorInput"
+      responses:
+        "200":
+          description: Author updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+        "400":
+          description: Invalid input
+        "404":
+          description: Author not found
+        "500":
+          description: Internal server error
+    delete:
+      summary: Delete an author
+      tags:
+        - Authors
+      responses:
+        "204":
+          description: Author deleted successfully
+        "404":
+          description: Author not found
+        "500":
+          description: Internal server error
+
+  /genres:
+    post:
+      summary: Create a new genre
+      tags:
+        - Genres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenreInput"
+      responses:
+        "201":
+          description: Genre created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal server error
+    get:
+      summary: Get all genres
+      tags:
+        - Genres
+      responses:
+        "200":
+          description: A list of all genres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Genre"
+        "500":
+          description: Internal server error
+
+  /genres/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParam"
+    get:
+      summary: Get a single genre by ID
+      tags:
+        - Genres
+      responses:
+        "200":
+          description: A single genre object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "404":
+          description: Genre not found
+        "500":
+          description: Internal server error
+    put:
+      summary: Update an existing genre
+      tags:
+        - Genres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenreInput"
+      responses:
+        "200":
+          description: Genre updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400":
+          description: Invalid input
+        "404":
+          description: Genre not found
+        "500":
+          description: Internal server error
+    delete:
+      summary: Delete a genre
+      tags:
+        - Genres
+      responses:
+        "204":
+          description: Genre deleted successfully
+        "404":
+          description: Genre not found
+        "500":
+          description: Internal server error
+
+  /books/{bookId}/reviews:
+    parameters:
+      - $ref: "#/components/parameters/BookIdParam"
+    post:
+      summary: Create a new review for a specific book
+      tags:
+        - Reviews
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewInput"
+      responses:
+        "201":
+          description: Review created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: Invalid input
+        "404":
+          description: Book not found
+        "500":
+          description: Internal server error
+    get:
+      summary: Get all reviews for a specific book
+      tags:
+        - Reviews
+      responses:
+        "200":
+          description: A list of reviews for the specified book
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Review"
+        "404":
+          description: Book not found
+        "500":
+          description: Internal server error
+
+  /reviews/{id}:
+    parameters:
+      - $ref: "#/components/parameters/IdParam"
+    get:
+      summary: Get a single review by ID
+      tags:
+        - Reviews
+      responses:
+        "200":
+          description: A single review object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "404":
+          description: Review not found
+        "500":
+          description: Internal server error
+    put:
+      summary: Update an existing review by ID
+      tags:
+        - Reviews
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewInput"
+      responses:
+        "200":
+          description: Review updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: Invalid input
+        "404":
+          description: Review not found
+        "500":
+          description: Internal server error
+    delete:
+      summary: Delete a review
+      tags:
+        - Reviews
+      responses:
+        "204":
+          description: Review deleted successfully
+        "404":
+          description: Review not found
+        "500":
+          description: Internal server error
+
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Resource ID
+    BookIdParam:
+      name: bookId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ID of the book to which the review belongs
+
+  schemas:
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - authorId
+        - genreId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+        authorId:
+          type: string
+          format: uuid
+        genreId:
+          type: string
+          format: uuid
+        publishedYear:
+          type: integer
+          format: int32
+        isbn:
+          type: string
+      example:
+        id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+        title: "Harry Potter and the Philosopher's Stone"
+        authorId: "123e4567-e89b-12d3-a456-426614174000"
+        genreId: "987f6543-a2b1-34c5-d6e7-890123456789"
+        publishedYear: 1997
+        isbn: "978-3-16-148410-0"
+
+    BookInput:
+      type: object
+      required:
+        - title
+        - authorId
+        - genreId
+      properties:
+        title:
+          type: string
+        authorId:
+          type: string
+          format: uuid
+        genreId:
+          type: string
+          format: uuid
+        publishedYear:
+          type: integer
+          format: int32
+        isbn:
+          type: string
+      example:
+        title: "Harry Potter and the Philosopher's Stone"
+        authorId: "123e4567-e89b-12d3-a456-426614174000"
+        genreId: "987f6543-a2b1-34c5-d6e7-890123456789"
+        publishedYear: 1997
+        isbn: "978-3-16-148410-0"
+
+    Author:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+        bio:
+          type: string
+        birthDate:
+          type: string
+          format: date
+      example:
+        id: "123e4567-e89b-12d3-a456-426614174000"
+        name: "Rowling, J.K."
+        bio: "A British author, best known for the Harry Potter series."
+        birthDate: "1965-07-31"
+
+    AuthorInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        bio:
+          type: string
+        birthDate:
+          type: string
+          format: date
+      example:
+        name: "Rowling, J.K."
+        bio: "A British author, best known for the Harry Potter series."
+        birthDate: "1965-07-31"
+
+    Genre:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        id: "987f6543-a2b1-34c5-d6e7-890123456789"
+        name: "Fantasy"
+        description: "A genre of speculative fiction set in a fictional universe."
+
+    GenreInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        name: "Fantasy"
+        description: "A genre of speculative fiction set in a fictional universe."
+
+    Review:
+      type: object
+      required:
+        - id
+        - bookId
+        - reviewerName
+        - rating
+        - comment
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        bookId:
+          type: string
+          format: uuid
+        reviewerName:
+          type: string
+        rating:
+          type: number
+          format: float
+          minimum: 1
+          maximum: 5
+        comment:
+          type: string
+        reviewDate:
+          type: string
+          format: date-time
+          readOnly: true
+      example:
+        id: "fedcba98-7654-3210-fedc-ba9876543210"
+        bookId: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+        reviewerName: "Bookworm"
+        rating: 4.5
+        comment: "An engaging read with well-developed characters!"
+        reviewDate: "2023-10-26T10:00:00Z"
+
+    ReviewInput:
+      type: object
+      required:
+        - reviewerName
+        - rating
+        - comment
+      properties:
+        reviewerName:
+          type: string
+        rating:
+          type: number
+          format: float
+          minimum: 1
+          maximum: 5
+        comment:
+          type: string
+      example:
+        reviewerName: "Bookworm"
+        rating: 4.5
+        comment: "An engaging read with well-developed characters!"
