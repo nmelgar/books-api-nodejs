@@ -30,11 +30,11 @@ const options: swaggerJsdoc.Options = {
         url: `http://localhost:${PORT}`,
       },
       {
-        url: "https://book-management-api-oz2l.onrender.com/",
+        url: "https://book-management-api-oz2l.onrender.com",
       },
     ],
   },
-  apis: ["././openapi.yaml"],
+  apis: ["./openapi.yaml"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
