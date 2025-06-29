@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import path from "path";
 // import log from './logger'
 
 const PORT = 3000;
@@ -34,7 +35,7 @@ const options: swaggerJsdoc.Options = {
       },
     ],
   },
-  apis: ["./openapi.yaml"],
+  apis: [path.resolve(__dirname, "../../openapi.yaml")],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
