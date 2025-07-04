@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import swaggerDocs from "./utils/swagger";
-import booksRoutes from "./routes/routes";
+import bookRoutes from "./routes/bookRoutes";
 
 // env variables
 dotenv.config();
@@ -23,7 +23,7 @@ db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to database"));
 
 // routes
-app.use("/", booksRoutes);
+app.use("/books", bookRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
