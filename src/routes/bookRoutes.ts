@@ -8,7 +8,7 @@ import {
   getBookById,
   updateBook,
   deleteBook,
-} from "../controllers/booksController";
+} from "../controllers/bookControllers";
 
 // create a new book
 router.post("/", postBook);

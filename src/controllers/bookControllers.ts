@@ -1,5 +1,5 @@
 import express, { Router, Request, Response } from "express";
-import { Book } from "../models/books";
+import { Book } from "../models/bookModel";
 
 // home route
 // export const getHome = (req: Request, res: Response) => {
