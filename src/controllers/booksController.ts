@@ -9,3 +9,4 @@ export const getHome = (req: Request, res: Response) => {
     res.status(500).json({ message: "Home failed to load." });
   }
 };
+
