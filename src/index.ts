@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import swaggerDocs from "./utils/swagger";
 import bookRoutes from "./routes/bookRoutes";
 import genreRoutes from "./routes/genreRoutes";
+import reviewRoutes from "./routes/reviewRoutes";
 
 // env variables
 dotenv.config();
@@ -26,6 +27,7 @@ db.once("open", () => console.log("Connected to database"));
 // routes
 app.use("/books", bookRoutes);
 app.use("/genres", genreRoutes);
+app.use("/reviews", reviewRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
