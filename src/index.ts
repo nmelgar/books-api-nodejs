@@ -12,9 +12,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// port of the app
-const PORT = 3000;
-
 // connect to the database
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost:27017/books-api";
@@ -29,7 +26,5 @@ app.use("/books", bookRoutes);
 app.use("/genres", genreRoutes);
 app.use("/reviews", reviewRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-  swaggerDocs(app, PORT);
-});
+// Export the app for testing
+export default app;
