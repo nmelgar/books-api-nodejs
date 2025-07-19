@@ -1,20 +1,30 @@
-import mongoose, { Document, Model, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-export interface AuthorDocument extends Document {
-  name: string;
-  bio?: string;
-  birthDate?: string;
-}
+const AuthorSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    biography: {
+      type: String,
+    },
+    dateOfBirth: {
+      type: Date,
+    },
 
-const authorSchema = new Schema<AuthorDocument>({
-  name: { type: String, required: true },
-  bio: String,
-  birthDate: String,
-});
+    // uncomment the types and refs as required once the Book collection is created
+    books: [
+      {
+        // type: Schema.Types.ObjectId,
+        // ref: "Book",
+        type: String, // Keeping it as String for now, similar to your BookModel
+      },
+    ],
+  },
+  {
+    versionKey: false,
+  }
+);
 
-// Prevent model overwrite in dev watch mode
-const Author: Model<AuthorDocument> =
-  mongoose.models.Author ||
-  mongoose.model<AuthorDocument>("Author", authorSchema);
-
-export default Author;
+export const Author = mongoose.model("Author", AuthorSchema);

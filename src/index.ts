@@ -5,6 +5,7 @@ import swaggerDocs from "./utils/swagger";
 import bookRoutes from "./routes/bookRoutes";
 import genreRoutes from "./routes/genreRoutes";
 import reviewRoutes from "./routes/reviewRoutes";
+import authorRoutes from "./routes/authorRoutes";
 
 // env variables
 dotenv.config();
@@ -25,6 +26,7 @@ db.once("open", () => console.log("Connected to database"));
 app.use("/books", bookRoutes);
 app.use("/genres", genreRoutes);
 app.use("/reviews", reviewRoutes);
+app.use("/authors", authorRoutes);
 
 // Export the app for testing
 export default app;

@@ -1,19 +1,23 @@
 import express from "express";
-import {
-  getAllAuthors,
-  getAuthorById,
-  createAuthor,
-  updateAuthor,
-  deleteAuthor,
-} from "../controllers/authorControllers";
-
 const router = express.Router();
 
-// RESTful routes for authors
-router.get("/", getAllAuthors); // GET /authors
-router.get("/:id", getAuthorById); // GET /authors/:id
-router.post("/", createAuthor); // POST /authors
-router.put("/:id", updateAuthor); // PUT /authors/:id
-router.delete("/:id", deleteAuthor); // DELETE /authors/:id
+import {
+  postAuthor,
+  getAuthors,
+  getAuthorById,
+  updateAuthor,
+  deleteAuthor,
+} from "../controllers/authorControllers"; // Assuming authorControllers.ts exists
+
+//create a new author
+router.post("/", postAuthor);
+// get all authors
+router.get("/", getAuthors);
+// get an author by ID
+router.get("/:id", getAuthorById);
+// update an author by ID
+router.put("/:id", updateAuthor);
+// delete an author by ID
+router.delete("/:id", deleteAuthor);
 
 export default router;
