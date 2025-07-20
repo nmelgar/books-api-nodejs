@@ -15,14 +15,15 @@ import { Book } from "../models/bookModel";
 export const postBook = async (req: Request, res: Response) => {
   const book = new Book({
     title: req.body.title,
-    authoId: req.body.authoId,
-    genreId: req.body.authoId,
+    authorId: req.body.authorId,
+    genreId: req.body.genreId,
     publishedYear: req.body.publishedYear,
     isbn: req.body.isbn,
     pageCount: req.body.pageCount,
     description: req.body.description,
     reviews: req.body.reviews,
   });
+
   try {
     const newBook = await book.save();
     res.status(201).json(newBook);
