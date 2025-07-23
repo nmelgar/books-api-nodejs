@@ -4,8 +4,10 @@ import bookRoutes from "./routes/bookRoutes";
 import genreRoutes from "./routes/genreRoutes";
 import reviewRoutes from "./routes/reviewRoutes";
 import authorRoutes from "./routes/authorRoutes";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // routes

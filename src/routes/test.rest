@@ -1,0 +1,30 @@
+# LOCAL ENV TESTS
+###
+GET http://localhost:3000/books
+
+###
+
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "title": "The Hobbit 2",
+  "authorId": "123",
+  "genreId": "456",
+  "publishedYear": 1937,
+  "isbn": "978-0-345-33968-3",
+  "pageCount": 310,
+  "description": "A fantasy novel by J.R.R. Tolkien",
+  "reviews": "Some review"
+}
+
+
+
+
+### 
+DELETE http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "id": "6881395d8f646bd396740bd5"
+}
