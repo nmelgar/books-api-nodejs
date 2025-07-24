@@ -6,6 +6,7 @@ import genreRoutes from "./routes/genreRoutes";
 import reviewRoutes from "./routes/reviewRoutes";
 import authorRoutes from "./routes/authorRoutes";
 import authRoutes from "./routes/authRoutes";
+import homeRoutes from "./routes/homeRoutes";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
@@ -14,7 +15,9 @@ import "./config/passportSetup";
 
 dotenv.config();
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
+
 const app = express();
+app.set("trust proxy", true);
 app.use(
   cors({
     origin: [
@@ -42,12 +45,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//styles
+app.use(express.static("public"));
+
 // routes
+app.use("/", homeRoutes);
+app.use("/auth", authRoutes);
+app.use("/authors", authorRoutes);
 app.use("/books", bookRoutes);
 app.use("/genres", genreRoutes);
 app.use("/reviews", reviewRoutes);
-app.use("/authors", authorRoutes);
-app.use("/auth", authRoutes);
 
 // Export the app for testing
 export default app;
