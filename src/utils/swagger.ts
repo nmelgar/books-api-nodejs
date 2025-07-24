@@ -1,8 +1,7 @@
-import { Express, Request, Response } from "express";
+import { Express, Request, Response, NextFunction } from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import path from "path";
-// import log from './logger'
 
 const PORT = 3000;
 const options: swaggerJsdoc.Options = {
@@ -13,11 +12,11 @@ const options: swaggerJsdoc.Options = {
       version: "1.0.0",
     },
     components: {
-      securityChemas: {
+      securitySchemes: {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
-          beareFormat: "JWT",
+          bearerFormat: "JWT",
         },
       },
     },
@@ -38,18 +37,41 @@ const options: swaggerJsdoc.Options = {
   apis: [path.resolve(__dirname, "../../openapi.yaml")],
 };
 
-const swaggerSpec = swaggerJsdoc(options);
+const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).render("unauthorized", {
+    message: "Please log in to view API documentation.",
+  });
+};
 
 function swaggerDocs(app: Express, port: number) {
-  // swagger page
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  if (
+    options.definition &&
+    Array.isArray((options.definition as any).servers) &&
+    (options.definition as any).servers.length > 0
+  ) {
+    (options.definition as any).servers[0].url = `http://localhost:${port}`;
+  }
 
-  // docs in json format
-  app.get("docs.json", (req: Request, res: Response) => {
+  const updatedSpec = swaggerJsdoc(options);
+
+  app.use(
+    "/api-docs",
+    isAuthenticated,
+    swaggerUi.serve,
+    swaggerUi.setup(updatedSpec)
+  );
+
+  app.get("/docs.json", isAuthenticated, (req: Request, res: Response) => {
     res.setHeader("Content-type", "application/json");
-    res.send(swaggerSpec);
+    res.send(updatedSpec);
   });
-  console.log(`Docs available at http://localhost:${port}/api-docs`);
+
+  console.log(
+    `Docs available at http://localhost:${port}/api-docs (Login required)`
+  );
 }
 
 export default swaggerDocs;

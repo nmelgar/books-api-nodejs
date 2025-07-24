@@ -440,12 +440,14 @@ components:
         isbn:
           type: string
       example:
-        id: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
-        title: "Harry Potter and the Philosopher's Stone"
-        authorId: "123e4567-e89b-12d3-a456-426614174000"
-        genreId: "987f6543-a2b1-34c5-d6e7-890123456789"
-        publishedYear: 1997
-        isbn: "978-3-16-148410-0"
+        "title": "The Hobbit 2"
+        "authorId": "123e4567-e89b-12d3-a456-426614174000"
+        "genreId": "987f6543-a2b1-34c5-d6e7-890123456789"
+        "publishedYear": 1937
+        "isbn": "978-0-345-33968-3"
+        "pageCount": 310,
+        "description": "A fantasy novel by J.R.R. Tolkien"
+        "reviews": "Some review"
 
     BookInput:
       type: object
@@ -468,11 +470,14 @@ components:
         isbn:
           type: string
       example:
-        title: "Harry Potter and the Philosopher's Stone"
-        authorId: "123e4567-e89b-12d3-a456-426614174000"
-        genreId: "987f6543-a2b1-34c5-d6e7-890123456789"
-        publishedYear: 1997
-        isbn: "978-3-16-148410-0"
+        "title": "The Hobbit 2"
+        "authorId": "123e4567-e89b-12d3-a456-426614174000"
+        "genreId": "987f6543-a2b1-34c5-d6e7-890123456789"
+        "publishedYear": 1937
+        "isbn": "978-0-345-33968-3"
+        "pageCount": 310,
+        "description": "A fantasy novel by J.R.R. Tolkien"
+        "reviews": "Some review"
 
     Author:
       type: object

@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import swaggerDocs from "./utils/swagger";
 import bookRoutes from "./routes/bookRoutes";
 import genreRoutes from "./routes/genreRoutes";
 import reviewRoutes from "./routes/reviewRoutes";

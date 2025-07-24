@@ -8,23 +8,15 @@ POST http://localhost:3000/books
 Content-Type: application/json
 
 {
-  "title": "The Hobbit 2",
-  "authorId": "123",
-  "genreId": "456",
-  "publishedYear": 1937,
-  "isbn": "978-0-345-33968-3",
+  "title": "The Hobbit 21111",
+  "authorId": "121113",
+  "genreId": "451116",
+  "publishedYear": 1938,
+  "isbn": "978-0-345-33968-39",
   "pageCount": 310,
   "description": "A fantasy novel by J.R.R. Tolkien",
   "reviews": "Some review"
 }
 
-
-
-
 ### 
-DELETE http://localhost:3000/books
-Content-Type: application/json
-
-{
-  "id": "6881395d8f646bd396740bd5"
-}
+DELETE http://localhost:3000/books/688164172ad3762193c9818a
